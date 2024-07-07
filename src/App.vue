@@ -1,6 +1,9 @@
 <template>
   <div class="ctr"> 
-    <Questions v-if="questionsAnswered < questions.length" />
+    <Questions v-if="questionsAnswered < questions.length"
+               :questions="questions"
+               :questionsAnswered="questionsAnswered"
+    />
     <Result v-else/>
     <button type="button" class="reset-btn">Reset</button>
   </div>
@@ -20,23 +23,44 @@ export default {
     return {
       questionsAnswered: 0,
       questions: [
-        {
-            q: 'What is 2 + 2?', 
+      {
+            q: 'What temperature does water boil at?', 
             answers: [
                 {
-                    text: '4',
+                    text: '50 degrees Celcius',
+                    is_correct: false
+                },
+                {
+                    text: '25 degrees Celcius',
+                    is_correct: false 
+                },
+                {
+                    text: '100 degrees Celcius',
                     is_correct: true
                 },
                 {
-                    text: '3',
+                    text: '150 degrees Celcius',
+                    is_correct: false 
+                }
+            ] 
+        },
+        {
+            q: 'Who painted the Mona Lisa?', 
+            answers: [
+                {
+                    text: 'Pablo Picasso',
+                    is_correct: false
+                },
+                {
+                    text: 'Vincent van Gogh',
                     is_correct: false 
                 },
                 {
-                    text: 'Fish',
-                    is_correct: false 
+                    text: 'Leonardo Da Vinci',
+                    is_correct: true
                 },
                 {
-                    text: '5',
+                    text: 'Claude Monet',
                     is_correct: false 
                 }
             ] 
@@ -76,6 +100,52 @@ export default {
                 {
                     text: 'i',
                     is_correct: false 
+                },
+                {
+                    text: 'l',
+                    is_correct: false 
+                }
+            ] 
+        },
+        { 
+            q: 'How many squares are there on a chess board?', 
+            answers: [
+                {
+                    text: '128',
+                    is_correct: false
+                },
+                {
+                    text: '64',
+                    is_correct: true 
+                },
+                {
+                    text: '32',
+                    is_correct: false 
+                },
+                {
+                    text: '128',
+                    is_correct: false 
+                }
+            ] 
+        },
+        { 
+            q: 'What does the roman numeral C represent?', 
+            answers: [
+                {
+                    text: '10',
+                    is_correct: false
+                },
+                {
+                    text: '100',
+                    is_correct: true 
+                },
+                {
+                    text: '1000',
+                    is_correct: false 
+                },
+                {
+                    text: '1,000,000',
+                    is_correct: false 
                 }
             ] 
         },
@@ -83,13 +153,13 @@ export default {
     results: [
         {
             min: 0,
-            max: 2,
+            max: 5,
             title: "Try again!",
             desc: "Do a little more studying and you may succeed!"
         },
         {
-            min: 3,
-            max: 3,
+            min: 6,
+            max: 6,
             title: "Wow, you're a genius!",
             desc: "Studying has definitely paid off for you!"
         }
