@@ -3,6 +3,7 @@
     <Questions v-if="questionsAnswered < questions.length"
                :questions="questions"
                :questionsAnswered="questionsAnswered"
+               @answer-clicked="incrementQuestionsAnswered"
     />
     <Result v-else/>
     <button type="button" class="reset-btn">Reset</button>
@@ -165,7 +166,12 @@ export default {
         }
     ]
     }
-  }
+  },
+  methods: {
+    incrementQuestionsAnswered() {
+        this.questionsAnswered+= 1
+    }
+  },
 }
 </script>
 
