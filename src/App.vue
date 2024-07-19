@@ -3,9 +3,9 @@
     <Questions v-if="questionsAnswered < questions.length"
                :questions="questions"
                :questionsAnswered="questionsAnswered"
-               @answer-clicked="incrementQuestionsAnswered"
+               @answer-clicked="answerClicked"
     />
-    <Result v-else/>
+    <Result v-else :results="results" :totalCorrect="totalCorrect" />
     <button type="button" class="reset-btn">Reset</button>
   </div>
 </template>
@@ -23,8 +23,10 @@ export default {
   data() {
     return {
       questionsAnswered: 0,
+      totalCorrect: 0,
       questions: [
       {
+            id: 0,
             q: 'What temperature does water boil at?', 
             answers: [
                 {
@@ -46,6 +48,7 @@ export default {
             ] 
         },
         {
+            id: 1,
             q: 'Who painted the Mona Lisa?', 
             answers: [
                 {
@@ -67,6 +70,7 @@ export default {
             ] 
         },
         { 
+            id: 2,
             q: 'How many letters are in the word "Banana"?', 
             answers: [
                 {
@@ -88,6 +92,7 @@ export default {
             ] 
         },
         { 
+            id: 3,
             q: 'Find the missing letter: C_ke', 
             answers: [
                 {
@@ -109,6 +114,7 @@ export default {
             ] 
         },
         { 
+            id: 4,
             q: 'How many squares are there on a chess board?', 
             answers: [
                 {
@@ -130,6 +136,7 @@ export default {
             ] 
         },
         { 
+            id: 5,
             q: 'What does the roman numeral C represent?', 
             answers: [
                 {
@@ -168,7 +175,10 @@ export default {
     }
   },
   methods: {
-    incrementQuestionsAnswered() {
+    answerClicked(is_correct) {
+        if(is_correct) {
+            this.totalCorrect++;
+        }
         this.questionsAnswered+= 1
     }
   },

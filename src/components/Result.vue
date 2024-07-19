@@ -1,6 +1,6 @@
 <template>
-    <div class="result">
-        <div class="title">You got sample result 1!</div>
+    <div class="result" v-for="result in results">
+        <div class="title" v-if="totalCorrect<= result.max">You got sample result 1!</div>
         <div class="desc">
             Enter a short description here about the result.
         </div>
@@ -9,7 +9,7 @@
 
 <script>
     export default {
-        props:[],
+        props:['results', 'totalCorrect'],
     }
 </script>
 
